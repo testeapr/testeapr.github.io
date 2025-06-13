@@ -2,10 +2,10 @@
 
 /* Sombra FORTE para a imagem grande do caminhão */
 img[alt="Caminhão APR Transportes"] {
-  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.20), 0 8px 10px -6px rgba(0, 0, 0, 0.20) !important;
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.20), 0 10px 12px -8px rgba(0, 0, 0, 0.20) !important;
 }
 
 /* Sombra SUAVE para os boxes menores */
 .rounded-lg {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.20), 0 10px 12px -8px rgba(0, 0, 0, 0.25) !important;
 }
