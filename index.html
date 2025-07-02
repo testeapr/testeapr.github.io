@@ -8,8 +8,23 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>APR Transportes</title>
+    
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
+
+    <!-- Tag canônica dinâmica -->
+    <script>
+      const baseUrl = 'https://www.aprtransportes.com.br';
+      const canonicalUrl = baseUrl + window.location.pathname;
+
+      let link = document.querySelector("link[rel='canonical']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'canonical';
+        document.head.appendChild(link);
+      }
+      link.href = canonicalUrl;
+    </script>
   </head>
   <body>
     <div id="root"></div>
