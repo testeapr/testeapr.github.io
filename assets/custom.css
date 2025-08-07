@@ -1,0 +1,15 @@
+
+.banner {
+  width: 100%;
+  height: 600px;
+  background-image: url('/assets/image-004.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    background-image: url('/assets/image-004-mobile.jpg');
+  }
+}
