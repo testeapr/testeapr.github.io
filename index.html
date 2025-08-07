@@ -19,13 +19,12 @@
       })();
     </script>
 
+    <link rel="stylesheet" href="/assets/custom.css">
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
-    <link rel="stylesheet" href="/assets/custom.css">
   </head>
   <body>
     <div id="root"></div>
-    <div class="banner"></div>
 
     <!-- Tag canônica dinâmica -->
     <script>
@@ -39,6 +38,19 @@
         document.head.appendChild(link);
       }
       link.href = canonicalUrl;
+    </script>
+
+    <!-- Script que troca a imagem do banner automaticamente -->
+    <script>
+      window.addEventListener('load', () => {
+        const bannerElement = document.querySelector('[style*="image-004.jpg"]');
+        if (bannerElement) {
+          const isMobile = window.innerWidth <= 768;
+          bannerElement.style.backgroundImage = isMobile
+            ? "url('/assets/image-004-mobile.jpg')"
+            : "url('/assets/image-004.jpg')";
+        }
+      });
     </script>
   </body>
 </html>
