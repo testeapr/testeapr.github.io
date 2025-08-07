@@ -40,16 +40,32 @@
       link.href = canonicalUrl;
     </script>
 
-    <!-- Script que troca a imagem do banner automaticamente -->
+    <!-- Script que aplica imagem do banner após renderização do React -->
     <script>
-      window.addEventListener('load', () => {
+      const isMobile = window.innerWidth <= 768;
+      const targetImage = isMobile
+        ? "url('/assets/image-004-mobile.jpg')"
+        : "url('/assets/image-004.jpg')";
+
+      const applyBackgroundFix = () => {
         const bannerElement = document.querySelector('[style*="image-004.jpg"]');
         if (bannerElement) {
-          const isMobile = window.innerWidth <= 768;
-          bannerElement.style.backgroundImage = isMobile
-            ? "url('/assets/image-004-mobile.jpg')"
-            : "url('/assets/image-004.jpg')";
+          bannerElement.style.backgroundImage = targetImage;
+          observer.disconnect();
         }
+      };
+
+      const observer = new MutationObserver(() => {
+        applyBackgroundFix();
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+
+      window.addEventListener('load', () => {
+        applyBackgroundFix();
       });
     </script>
   </body>
