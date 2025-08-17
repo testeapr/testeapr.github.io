@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APR Transportes - Links</title>
+  
+  <!-- Favicon APR -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #f15a24;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .link-btn {
+      background: #fff;
+      border: 2px solid #f15a24;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+    .link-btn:hover {
+      background: #f15a24;
+      color: #fff;
+    }
+    .link-btn img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+      position: relative;
+    }
+    footer img {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      margin-top: 0;
+    }
+  </style>
+  <script>
+    // contador simples de cliques
+    function registrarClique(botao) {
+      if (!localStorage.getItem(botao)) {
+        localStorage.setItem(botao, 0);
+      }
+      let atual = parseInt(localStorage.getItem(botao));
+      localStorage.setItem(botao, atual + 1);
+      console.log("Cliques em " + botao + ": " + (atual + 1));
+    }
+  </script>
+</head>
+<body>
+  <h1>APR Transportes</h1>
+
+  <div class="links">
+    <a href="https://wa.me/+5548996417100" class="link-btn" target="_blank" onclick="registrarClique('whatsapp')">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"> WhatsApp
+    </a>
+    <a href="https://www.instagram.com/aprtransportes" class="link-btn" target="_blank" onclick="registrarClique('instagram')">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"> Instagram
+    </a>
+    <a href="https://www.facebook.com/61577619956846" class="link-btn" target="_blank" onclick="registrarClique('facebook')">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"> Facebook
+    </a>
+    <a href="https://maps.google.com/?q=APR+Transportes" class="link-btn" target="_blank" onclick="registrarClique('localizacao')">
+      <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Localização"> Localização
+    </a>
+    <a href="https://www.aprtransportes.com.br" class="link-btn" target="_blank" onclick="registrarClique('site')">
+      <img src="favicon-32x32.png" alt="Site"> Site Oficial
+    </a>
+  </div>
+
+  <footer>
+    <p>O seu parceiro logístico</p>
+    <img src="mascote.png" alt="Mascote APR">
+  </footer>
+</body>
+</html>
