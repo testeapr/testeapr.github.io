@@ -79,5 +79,18 @@
         applyBackgroundFix();
       });
     </script>
+
+    <!-- Script para redirecionar após envio do formulário -->
+    <script>
+      const observerForm = new MutationObserver(() => {
+        const msg = [...document.querySelectorAll("div, p, span")]
+          .find(el => el.textContent.includes("Obrigado"));
+        if (msg) {
+          window.location.href = "/obrigado.html";
+        }
+      });
+
+      observerForm.observe(document.body, { childList: true, subtree: true });
+    </script>
   </body>
 </html>
