@@ -34,25 +34,44 @@
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
 
-    <!-- ✅ Estilo adicionado para corrigir o corte do banner -->
+    <!-- ✅ Estilos para banner e remoção do bloco laranja abaixo -->
     <style>
-      /* Ajuste visual e responsivo do banner */
+      /* Banner principal: cobre toda a largura e fica centralizado */
       [style*="image-004.jpg"],
       [style*="image-004-mobile.jpg"] {
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
         width: 100%;
-        height: clamp(300px, 25vh, 420px); /* Altura ajustável */
+        height: clamp(300px, 25vh, 420px); /* ajuste conforme desejar */
         display: block;
       }
 
-      /* Altura menor para mobile */
+      /* Altura menor no mobile */
       @media (max-width: 768px) {
         [style*="image-004.jpg"],
         [style*="image-004-mobile.jpg"] {
           height: 260px;
         }
+      }
+
+      /* 🔶 Remove imediatamente o FUNDO do bloco logo abaixo do banner,
+         caso ele seja o "tapete/área" colorida (sólida ou gradiente)  */
+      [style*="image-004.jpg"] + *,
+      [style*="image-004-mobile.jpg"] + * {
+        background: transparent !important;
+        background-image: none !important;
+        background-color: transparent !important;
+        /* Se esse bloco era apenas um espaçador colorido, zera espaçamentos */
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        min-height: 0 !important;
+      }
+
+      /* Garantia extra: se o próprio banner recebeu uma cor de fundo */
+      [style*="image-004.jpg"],
+      [style*="image-004-mobile.jpg"] {
+        background-color: transparent !important;
       }
     </style>
   </head>
@@ -86,22 +105,37 @@
         );
         if (bannerElement) {
           bannerElement.style.backgroundImage = targetImage;
+
+          /* 🔶 Remoção programática de um possível bloco laranja logo abaixo,
+             mesmo que não pegue pelo CSS (ex.: classe dinâmica do React). */
+          const next = bannerElement.nextElementSibling;
+          if (next) {
+            const cs = getComputedStyle(next);
+            const bg = (cs.backgroundImage || '') + ' ' + (cs.backgroundColor || '');
+            // detecta laranja/gradiente comum (#ff6600) e remove
+            if (/ff6600|linear-gradient|orange/i.test(bg)) {
+              next.style.background = 'transparent';
+              next.style.backgroundImage = 'none';
+              next.style.backgroundColor = 'transparent';
+              next.style.paddingTop = '0';
+              next.style.paddingBottom = '0';
+              next.style.minHeight = '0';
+            }
+          }
+
           observer.disconnect();
         }
       };
 
-      const observer = new MutationObserver(() => {
-        applyBackgroundFix();
-      });
+      const observer = new MutationObserver(applyBackgroundFix);
 
       observer.observe(document.body, {
         childList: true,
         subtree: true,
       });
 
-      window.addEventListener('load', () => {
-        applyBackgroundFix();
-      });
+      window.addEventListener('load', applyBackgroundFix);
+      window.addEventListener('resize', applyBackgroundFix);
     </script>
 
     <!-- Script para redirecionar após envio do formulário -->
