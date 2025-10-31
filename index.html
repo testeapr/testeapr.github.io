@@ -33,6 +33,28 @@
     <link rel="stylesheet" href="/assets/custom.css">
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
+
+    <!-- ✅ Estilo adicionado para corrigir o corte do banner -->
+    <style>
+      /* Ajuste visual e responsivo do banner */
+      [style*="image-004.jpg"],
+      [style*="image-004-mobile.jpg"] {
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        width: 100%;
+        height: clamp(300px, 25vh, 420px); /* Altura ajustável */
+        display: block;
+      }
+
+      /* Altura menor para mobile */
+      @media (max-width: 768px) {
+        [style*="image-004.jpg"],
+        [style*="image-004-mobile.jpg"] {
+          height: 260px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
@@ -59,7 +81,9 @@
         : "url('/assets/image-004.jpg')";
 
       const applyBackgroundFix = () => {
-        const bannerElement = document.querySelector('[style*="image-004.jpg"]');
+        const bannerElement = document.querySelector(
+          '[style*="image-004.jpg"], [style*="image-004-mobile.jpg"]'
+        );
         if (bannerElement) {
           bannerElement.style.backgroundImage = targetImage;
           observer.disconnect();
