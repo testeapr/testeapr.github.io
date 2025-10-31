@@ -9,7 +9,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'AW-17613592905');
     </script>
 
@@ -20,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>APR Transportes</title>
 
-    <!-- Script para redirecionar URLs limpas para hash URLs -->
+    <!-- Redireciona URLs limpas para hash URLs -->
     <script>
       (function() {
         const path = window.location.pathname;
@@ -34,43 +33,33 @@
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
 
-    <!-- ✅ Estilos para banner e remoção do bloco laranja abaixo -->
+    <!-- ✅ Estilos: banner responsivo e fundos neutros -->
     <style>
+      /* Força fundo neutro global para não “vazar” gradientes */
+      html, body { background:#ffffff !important; }
+
       /* Banner principal: cobre toda a largura e fica centralizado */
       [style*="image-004.jpg"],
-      [style*="image-004-mobile.jpg"] {
+      [style*="image-004-mobile.jpg"]{
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
+        background-color: transparent !important;
         width: 100%;
-        height: clamp(300px, 25vh, 420px); /* ajuste conforme desejar */
+        height: clamp(300px, 25vh, 420px);
         display: block;
       }
 
-      /* Altura menor no mobile */
-      @media (max-width: 768px) {
+      @media (max-width:768px){
         [style*="image-004.jpg"],
-        [style*="image-004-mobile.jpg"] {
-          height: 260px;
-        }
+        [style*="image-004-mobile.jpg"]{ height:260px; }
       }
 
-      /* 🔶 Remove imediatamente o FUNDO do bloco logo abaixo do banner,
-         caso ele seja o "tapete/área" colorida (sólida ou gradiente)  */
+      /* Caso a próxima seção tenha cor/gradiente, zera */
       [style*="image-004.jpg"] + *,
-      [style*="image-004-mobile.jpg"] + * {
+      [style*="image-004-mobile.jpg"] + *{
         background: transparent !important;
         background-image: none !important;
-        background-color: transparent !important;
-        /* Se esse bloco era apenas um espaçador colorido, zera espaçamentos */
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        min-height: 0 !important;
-      }
-
-      /* Garantia extra: se o próprio banner recebeu uma cor de fundo */
-      [style*="image-004.jpg"],
-      [style*="image-004-mobile.jpg"] {
         background-color: transparent !important;
       }
     </style>
@@ -92,62 +81,73 @@
       link.href = canonicalUrl;
     </script>
 
-    <!-- Script que aplica imagem do banner após renderização do React -->
+    <!-- Aplica imagem do banner e remove fundo laranja/gradiente abaixo -->
     <script>
       const isMobile = window.innerWidth <= 768;
       const targetImage = isMobile
         ? "url('/assets/image-004-mobile.jpg')"
         : "url('/assets/image-004.jpg')";
 
-      const applyBackgroundFix = () => {
-        const bannerElement = document.querySelector(
-          '[style*="image-004.jpg"], [style*="image-004-mobile.jpg"]'
+      // Detecta laranja (APR) e gradientes comuns
+      const isOrangeBg = (cs) => {
+        const bi = (cs.backgroundImage || '').toLowerCase();
+        const bc = (cs.backgroundColor || '').toLowerCase();
+        // #ff6600, variações de laranja e gradiente
+        return (
+          bi.includes('linear-gradient') ||
+          bc.includes('ff6600') || bc.includes('255, 102, 0') ||
+          bc.includes('rgba(255, 102, 0') || bc.includes('orange')
         );
-        if (bannerElement) {
-          bannerElement.style.backgroundImage = targetImage;
+      };
 
-          /* 🔶 Remoção programática de um possível bloco laranja logo abaixo,
-             mesmo que não pegue pelo CSS (ex.: classe dinâmica do React). */
-          const next = bannerElement.nextElementSibling;
-          if (next) {
-            const cs = getComputedStyle(next);
-            const bg = (cs.backgroundImage || '') + ' ' + (cs.backgroundColor || '');
-            // detecta laranja/gradiente comum (#ff6600) e remove
-            if (/ff6600|linear-gradient|orange/i.test(bg)) {
-              next.style.background = 'transparent';
-              next.style.backgroundImage = 'none';
-              next.style.backgroundColor = 'transparent';
-              next.style.paddingTop = '0';
-              next.style.paddingBottom = '0';
-              next.style.minHeight = '0';
-            }
-          }
-
-          observer.disconnect();
+      const clearBg = (el) => {
+        if (!el) return;
+        const cs = getComputedStyle(el);
+        if (isOrangeBg(cs)) {
+          el.style.background = 'transparent';
+          el.style.backgroundImage = 'none';
+          el.style.backgroundColor = 'transparent';
         }
       };
 
+      const applyBackgroundFix = () => {
+        const banner = document.querySelector(
+          '[style*="image-004.jpg"], [style*="image-004-mobile.jpg"]'
+        );
+        if (!banner) return;
+
+        // Garante a imagem correta do banner
+        banner.style.backgroundImage = targetImage;
+
+        // 1) Próximo irmão (seção imediatamente abaixo)
+        clearBg(banner.nextElementSibling);
+
+        // 2) Pai do banner (caso o fundo esteja nele)
+        clearBg(banner.parentElement);
+
+        // 3) Irmão do pai (alguns layouts criam wrapper+seção)
+        clearBg(banner.parentElement && banner.parentElement.nextElementSibling);
+
+        // 4) Como fallback, limpa fundo do body/root se estiver laranja/gradiente
+        clearBg(document.getElementById('root'));
+        clearBg(document.body);
+
+        observer.disconnect();
+      };
+
       const observer = new MutationObserver(applyBackgroundFix);
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-
+      observer.observe(document.body, { childList: true, subtree: true });
       window.addEventListener('load', applyBackgroundFix);
       window.addEventListener('resize', applyBackgroundFix);
     </script>
 
-    <!-- Script para redirecionar após envio do formulário -->
+    <!-- Redireciona após envio do formulário -->
     <script>
       const observerForm = new MutationObserver(() => {
         const msg = [...document.querySelectorAll("div, p, span")]
           .find(el => el.textContent.includes("Obrigado"));
-        if (msg) {
-          window.location.href = "/obrigado.html";
-        }
+        if (msg) window.location.href = "/obrigado.html";
       });
-
       observerForm.observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
