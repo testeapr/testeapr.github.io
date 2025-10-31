@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>APR Transportes</title>
 
-    <!-- Redireciona URLs limpas para hash URLs -->
+    <!-- Script para redirecionar URLs limpas para hash URLs -->
     <script>
       (function() {
         const path = window.location.pathname;
@@ -33,29 +33,24 @@
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
 
-    <!-- ✅ Estilos: banner responsivo e fundos neutros -->
+    <!-- ✅ Estilos do banner (mostra a imagem inteira 1080x500) e remove fundo laranja abaixo -->
     <style>
-      /* Força fundo neutro global para não “vazar” gradientes */
+      /* Fundo global neutro */
       html, body { background:#ffffff !important; }
 
-      /* Banner principal: cobre toda a largura e fica centralizado */
+      /* Banner principal: exibe a imagem por completo (sem corte) */
       [style*="image-004.jpg"],
       [style*="image-004-mobile.jpg"]{
-        background-size: cover !important;
+        background-size: contain !important;   /* mostra 100% da imagem */
         background-position: center !important;
         background-repeat: no-repeat !important;
-        background-color: transparent !important;
+        background-color: #071b30 !important;  /* azul escuro de base para não aparecer “vazios” */
         width: 100%;
-        height: clamp(300px, 25vh, 420px);
+        height: 500px;                          /* altura fixa para 1080x500 */
         display: block;
       }
 
-      @media (max-width:768px){
-        [style*="image-004.jpg"],
-        [style*="image-004-mobile.jpg"]{ height:260px; }
-      }
-
-      /* Caso a próxima seção tenha cor/gradiente, zera */
+      /* Se houver seção imediatamente abaixo com fundo/gradiente, zera */
       [style*="image-004.jpg"] + *,
       [style*="image-004-mobile.jpg"] + *{
         background: transparent !important;
@@ -88,11 +83,9 @@
         ? "url('/assets/image-004-mobile.jpg')"
         : "url('/assets/image-004.jpg')";
 
-      // Detecta laranja (APR) e gradientes comuns
       const isOrangeBg = (cs) => {
         const bi = (cs.backgroundImage || '').toLowerCase();
         const bc = (cs.backgroundColor || '').toLowerCase();
-        // #ff6600, variações de laranja e gradiente
         return (
           bi.includes('linear-gradient') ||
           bc.includes('ff6600') || bc.includes('255, 102, 0') ||
@@ -116,19 +109,18 @@
         );
         if (!banner) return;
 
-        // Garante a imagem correta do banner
+        // Garante a imagem correta do banner e o estilo de exibição
         banner.style.backgroundImage = targetImage;
+        banner.style.backgroundSize = 'contain';
+        banner.style.backgroundPosition = 'center';
+        banner.style.backgroundRepeat = 'no-repeat';
+        banner.style.backgroundColor = '#071b30';
+        banner.style.height = '500px';
 
-        // 1) Próximo irmão (seção imediatamente abaixo)
+        // Remove fundos laranja/gradiente de contêineres próximos
         clearBg(banner.nextElementSibling);
-
-        // 2) Pai do banner (caso o fundo esteja nele)
         clearBg(banner.parentElement);
-
-        // 3) Irmão do pai (alguns layouts criam wrapper+seção)
         clearBg(banner.parentElement && banner.parentElement.nextElementSibling);
-
-        // 4) Como fallback, limpa fundo do body/root se estiver laranja/gradiente
         clearBg(document.getElementById('root'));
         clearBg(document.body);
 
@@ -141,7 +133,7 @@
       window.addEventListener('resize', applyBackgroundFix);
     </script>
 
-    <!-- Redireciona após envio do formulário -->
+    <!-- Script para redirecionar após envio do formulário -->
     <script>
       const observerForm = new MutationObserver(() => {
         const msg = [...document.querySelectorAll("div, p, span")]
