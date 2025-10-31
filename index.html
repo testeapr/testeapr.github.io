@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>APR Transportes</title>
 
-    <!-- Script para redirecionar URLs limpas para hash URLs -->
+    <!-- Redireciona URLs limpas para hash URLs -->
     <script>
       (function() {
         const path = window.location.pathname;
@@ -33,24 +33,40 @@
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
 
-    <!-- ✅ Estilos do banner (mostra a imagem inteira 1080x500) e remove fundo laranja abaixo -->
+    <!-- ✅ Regras do banner -->
     <style>
-      /* Fundo global neutro */
       html, body { background:#ffffff !important; }
 
-      /* Banner principal: exibe a imagem por completo (sem corte) */
+      /* Elemento que recebe o background do banner (desktop/mobile) */
       [style*="image-004.jpg"],
       [style*="image-004-mobile.jpg"]{
-        background-size: contain !important;   /* mostra 100% da imagem */
+        /* mostra a imagem 1080x500 por completo */
+        background-size: contain !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
-        background-color: #071b30 !important;  /* azul escuro de base para não aparecer “vazios” */
-        width: 100%;
-        height: 500px;                          /* altura fixa para 1080x500 */
-        display: block;
+
+        /* altura exata para exibir inteira */
+        height: 500px !important;
+        min-height: 500px !important;
+
+        /* largura total da tela */
+        width: 100% !important;
+        display: block !important;
+
+        /* evita cortes por overflow de contêineres */
+        overflow: visible !important;
+
+        /* azul escuro de base (caso sobrem faixas laterais) */
+        background-color: #061a30 !important;
       }
 
-      /* Se houver seção imediatamente abaixo com fundo/gradiente, zera */
+      /* Garante que NENHUM pai corte o banner */
+      [style*="image-004.jpg"] *,
+      [style*="image-004-mobile.jpg"] *{
+        overflow: visible !important;
+      }
+
+      /* Remove fundo do bloco imediatamente abaixo, se houver */
       [style*="image-004.jpg"] + *,
       [style*="image-004-mobile.jpg"] + *{
         background: transparent !important;
@@ -76,64 +92,72 @@
       link.href = canonicalUrl;
     </script>
 
-    <!-- Aplica imagem do banner e remove fundo laranja/gradiente abaixo -->
+    <!-- Aplica o background do banner e ajusta deslocamento do header -->
     <script>
       const isMobile = window.innerWidth <= 768;
       const targetImage = isMobile
         ? "url('/assets/image-004-mobile.jpg')"
         : "url('/assets/image-004.jpg')";
 
-      const isOrangeBg = (cs) => {
-        const bi = (cs.backgroundImage || '').toLowerCase();
-        const bc = (cs.backgroundColor || '').toLowerCase();
-        return (
-          bi.includes('linear-gradient') ||
-          bc.includes('ff6600') || bc.includes('255, 102, 0') ||
-          bc.includes('rgba(255, 102, 0') || bc.includes('orange')
-        );
-      };
-
-      const clearBg = (el) => {
-        if (!el) return;
-        const cs = getComputedStyle(el);
-        if (isOrangeBg(cs)) {
-          el.style.background = 'transparent';
-          el.style.backgroundImage = 'none';
-          el.style.backgroundColor = 'transparent';
+      // tenta localizar o header fixo (faixa laranja) para compensar sua altura
+      function getFixedHeaderHeight() {
+        const all = document.querySelectorAll('header, nav, div, section');
+        let h = 0;
+        for (const el of all) {
+          const cs = getComputedStyle(el);
+          if (cs.position === 'fixed' && cs.top === '0px') {
+            const hh = el.getBoundingClientRect().height;
+            if (hh > h) h = hh;
+          }
         }
-      };
+        return Math.round(h);
+      }
 
-      const applyBackgroundFix = () => {
+      const applyBanner = () => {
         const banner = document.querySelector(
           '[style*="image-004.jpg"], [style*="image-004-mobile.jpg"]'
         );
         if (!banner) return;
 
-        // Garante a imagem correta do banner e o estilo de exibição
+        // aplica a imagem correta
         banner.style.backgroundImage = targetImage;
-        banner.style.backgroundSize = 'contain';
-        banner.style.backgroundPosition = 'center';
-        banner.style.backgroundRepeat = 'no-repeat';
-        banner.style.backgroundColor = '#071b30';
+
+        // força altura total visível do banner
         banner.style.height = '500px';
+        banner.style.minHeight = '500px';
 
-        // Remove fundos laranja/gradiente de contêineres próximos
-        clearBg(banner.nextElementSibling);
-        clearBg(banner.parentElement);
-        clearBg(banner.parentElement && banner.parentElement.nextElementSibling);
-        clearBg(document.getElementById('root'));
-        clearBg(document.body);
+        // compensa o header fixo, se existir
+        const headH = getFixedHeaderHeight();
+        if (headH > 0) {
+          // empurra o banner para baixo do header (sem ficar coberto)
+          banner.style.marginTop = headH + 'px';
+        }
 
-        observer.disconnect();
+        // garante que o contêiner PAI não corte o banner
+        const parent = banner.parentElement;
+        if (parent) {
+          parent.style.overflow = 'visible';
+        }
+
+        // zera fundo da seção abaixo, se houver
+        const next = banner.nextElementSibling;
+        if (next) {
+          next.style.background = 'transparent';
+          next.style.backgroundColor = 'transparent';
+          next.style.backgroundImage = 'none';
+        }
+
+        obs.disconnect();
       };
 
-      const observer = new MutationObserver(applyBackgroundFix);
-      observer.observe(document.body, { childList: true, subtree: true });
-      window.addEventListener('load', applyBackgroundFix);
-      window.addEventListener('resize', applyBackgroundFix);
+      const obs = new MutationObserver(applyBanner);
+      obs.observe(document.body, { childList: true, subtree: true });
+
+      window.addEventListener('load', applyBanner);
+      window.addEventListener('resize', applyBanner);
     </script>
 
-    <!-- Script para redirecionar após envio do formulário -->
+    <!-- Redireciona após envio do formulário -->
     <script>
       const observerForm = new MutationObserver(() => {
         const msg = [...document.querySelectorAll("div, p, span")]
