@@ -9,6 +9,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'AW-17613592905');
     </script>
 
@@ -19,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>APR Transportes</title>
 
-    <!-- Redireciona URLs limpas para hash URLs -->
+    <!-- Script para redirecionar URLs limpas para hash URLs -->
     <script>
       (function() {
         const path = window.location.pathname;
@@ -32,48 +33,6 @@
     <link rel="stylesheet" href="/assets/custom.css">
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
-
-    <!-- ✅ Regras do banner -->
-    <style>
-      html, body { background:#ffffff !important; }
-
-      /* Elemento que recebe o background do banner (desktop/mobile) */
-      [style*="image-004.jpg"],
-      [style*="image-004-mobile.jpg"]{
-        /* mostra a imagem 1080x500 por completo */
-        background-size: contain !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-
-        /* altura exata para exibir inteira */
-        height: 500px !important;
-        min-height: 500px !important;
-
-        /* largura total da tela */
-        width: 100% !important;
-        display: block !important;
-
-        /* evita cortes por overflow de contêineres */
-        overflow: visible !important;
-
-        /* azul escuro de base (caso sobrem faixas laterais) */
-        background-color: #061a30 !important;
-      }
-
-      /* Garante que NENHUM pai corte o banner */
-      [style*="image-004.jpg"] *,
-      [style*="image-004-mobile.jpg"] *{
-        overflow: visible !important;
-      }
-
-      /* Remove fundo do bloco imediatamente abaixo, se houver */
-      [style*="image-004.jpg"] + *,
-      [style*="image-004-mobile.jpg"] + *{
-        background: transparent !important;
-        background-image: none !important;
-        background-color: transparent !important;
-      }
-    </style>
   </head>
   <body>
     <div id="root"></div>
@@ -92,78 +51,45 @@
       link.href = canonicalUrl;
     </script>
 
-    <!-- Aplica o background do banner e ajusta deslocamento do header -->
+    <!-- Script que aplica imagem do banner após renderização do React -->
     <script>
       const isMobile = window.innerWidth <= 768;
       const targetImage = isMobile
         ? "url('/assets/image-004-mobile.jpg')"
         : "url('/assets/image-004.jpg')";
 
-      // tenta localizar o header fixo (faixa laranja) para compensar sua altura
-      function getFixedHeaderHeight() {
-        const all = document.querySelectorAll('header, nav, div, section');
-        let h = 0;
-        for (const el of all) {
-          const cs = getComputedStyle(el);
-          if (cs.position === 'fixed' && cs.top === '0px') {
-            const hh = el.getBoundingClientRect().height;
-            if (hh > h) h = hh;
-          }
+      const applyBackgroundFix = () => {
+        const bannerElement = document.querySelector('[style*="image-004.jpg"]');
+        if (bannerElement) {
+          bannerElement.style.backgroundImage = targetImage;
+          observer.disconnect();
         }
-        return Math.round(h);
-      }
-
-      const applyBanner = () => {
-        const banner = document.querySelector(
-          '[style*="image-004.jpg"], [style*="image-004-mobile.jpg"]'
-        );
-        if (!banner) return;
-
-        // aplica a imagem correta
-        banner.style.backgroundImage = targetImage;
-
-        // força altura total visível do banner
-        banner.style.height = '500px';
-        banner.style.minHeight = '500px';
-
-        // compensa o header fixo, se existir
-        const headH = getFixedHeaderHeight();
-        if (headH > 0) {
-          // empurra o banner para baixo do header (sem ficar coberto)
-          banner.style.marginTop = headH + 'px';
-        }
-
-        // garante que o contêiner PAI não corte o banner
-        const parent = banner.parentElement;
-        if (parent) {
-          parent.style.overflow = 'visible';
-        }
-
-        // zera fundo da seção abaixo, se houver
-        const next = banner.nextElementSibling;
-        if (next) {
-          next.style.background = 'transparent';
-          next.style.backgroundColor = 'transparent';
-          next.style.backgroundImage = 'none';
-        }
-
-        obs.disconnect();
       };
 
-      const obs = new MutationObserver(applyBanner);
-      obs.observe(document.body, { childList: true, subtree: true });
+      const observer = new MutationObserver(() => {
+        applyBackgroundFix();
+      });
 
-      window.addEventListener('load', applyBanner);
-      window.addEventListener('resize', applyBanner);
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+
+      window.addEventListener('load', () => {
+        applyBackgroundFix();
+      });
     </script>
 
-    <!-- Redireciona após envio do formulário -->
+    <!-- Script para redirecionar após envio do formulário -->
     <script>
       const observerForm = new MutationObserver(() => {
         const msg = [...document.querySelectorAll("div, p, span")]
           .find(el => el.textContent.includes("Obrigado"));
-        if (msg) window.location.href = "/obrigado.html";
+        if (msg) {
+          window.location.href = "/obrigado.html";
+        }
       });
+
       observerForm.observe(document.body, { childList: true, subtree: true });
     </script>
   </body>
