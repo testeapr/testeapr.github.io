@@ -6,8 +6,8 @@
 .banner {
   width: 100%;
   height: 28vh !important;
-  min-height: 220px !important;
-  max-height: 280px !important;
+  min-height: 240px !important;
+  max-height: 300px !important;
 
   background-image: url('/assets/image-004.jpg');
   background-size: cover;
@@ -21,9 +21,9 @@
 
 @media screen and (max-width: 768px) {
   .banner {
-    height: 180px !important;
-    min-height: 180px !important;
-    max-height: 200px !important;
+    height: 2280px !important;
+    min-height: 200px !important;
+    max-height: 220px !important;
 
     background-image: url('/assets/image-004-mobile.jpg');
   }
@@ -62,5 +62,30 @@ main section:first-of-type {
 /* Garante que imagens de fundo não estiquem */
 main section:first-of-type > div {
   min-height: 260px !important;
+}
+/* =========================
+   REMOVE FAIXA BRANCA ACIMA DO BANNER
+   ========================= */
+
+/* Remove padding do container principal da home */
+main > div {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Caso exista py-20 do Tailwind */
+.py-20 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Garante que o banner encoste no header */
+header + main {
+  margin-top: 0 !important;
+}
+
+/* Ajuste fino do banner */
+.banner {
+  margin-top: 0 !important;
 }
 
