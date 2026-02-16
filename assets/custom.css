@@ -118,4 +118,19 @@ main section:first-of-type {
     padding-top: 80px !important;
   }
 }
+/* =========================
+   RESPIRO REAL ENTRE BANNER E TÍTULO
+   ========================= */
+
+/* Espaço antes do título "Nossa Expertise" */
+h2 {
+  margin-top: 140px !important;
+}
+
+/* Ajuste para mobile */
+@media screen and (max-width: 768px) {
+  h2 {
+    margin-top: 100px !important;
+  }
+}
 
