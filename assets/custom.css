@@ -103,4 +103,19 @@ header + main {
     margin-bottom: 50px !important;
   }
 }
+/* =========================
+   MAIS RESPIRO ENTRE BANNER E TÍTULO
+   ========================= */
+
+/* Primeira seção de conteúdo da home */
+main section:first-of-type {
+  padding-top: 120px !important;
+}
+
+/* Ajuste para mobile */
+@media screen and (max-width: 768px) {
+  main section:first-of-type {
+    padding-top: 80px !important;
+  }
+}
 
