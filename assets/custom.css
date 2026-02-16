@@ -88,4 +88,19 @@ header + main {
 .banner {
   margin-top: 0 !important;
 }
+/* =========================
+   RESPIRO ENTRE BANNER E CONTEÚDO
+   ========================= */
+
+/* Espaço abaixo do banner */
+.banner {
+  margin-bottom: 80px !important;
+}
+
+/* Ajuste para mobile */
+@media screen and (max-width: 768px) {
+  .banner {
+    margin-bottom: 50px !important;
+  }
+}
 
