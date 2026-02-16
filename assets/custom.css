@@ -37,4 +37,30 @@
 .min-h-screen {
   min-height: auto !important;
 }
+/* =========================
+   CORREÇÃO DEFINITIVA DA HOME
+   ========================= */
+
+/* Força containers do Tailwind a não ocuparem a tela inteira */
+.min-h-screen {
+  min-height: auto !important;
+}
+
+/* Reduz qualquer seção inicial da home */
+main > div {
+  min-height: auto !important;
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
+}
+
+/* Caso o banner seja um section logo no início */
+main section:first-of-type {
+  min-height: 260px !important;
+  max-height: 300px !important;
+}
+
+/* Garante que imagens de fundo não estiquem */
+main section:first-of-type > div {
+  min-height: 260px !important;
+}
 
