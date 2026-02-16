@@ -86,7 +86,7 @@ header + main {
 
 /* Ajuste fino do banner */
 .banner {
-  margin-top: 0 !important;
+  margin-top: 10 !important;
 }
 /* =========================
    RESPIRO ENTRE BANNER E CONTEÚDO
@@ -94,13 +94,13 @@ header + main {
 
 /* Espaço abaixo do banner */
 .banner {
-  margin-bottom: 80px !important;
+  margin-bottom: 50px !important;
 }
 
 /* Ajuste para mobile */
 @media screen and (max-width: 768px) {
   .banner {
-    margin-bottom: 50px !important;
+    margin-bottom: 40px !important;
   }
 }
 /* =========================
@@ -124,13 +124,13 @@ main section:first-of-type {
 
 /* Espaço antes do título "Nossa Expertise" */
 h2 {
-  margin-top: 120px !important;
+  margin-top: 100px !important;
 }
 
 /* Ajuste para mobile */
 @media screen and (max-width: 768px) {
   h2 {
-    margin-top: 100px !important;
+    margin-top: 80px !important;
   }
 }
 
