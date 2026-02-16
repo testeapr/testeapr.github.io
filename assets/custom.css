@@ -4,12 +4,13 @@
 
 .banner {
   width: 100%;
-  height: 28vh !important;
+
+  /* CONTROLE REAL DE ALTURA (SEM vh) */
   min-height: 260px !important;
-  max-height: 340px !important;
+  max-height: 330px !important;
 
   margin-top: 0 !important;
-  margin-bottom: 60px !important; /* ⬅ reduzido (antes 80px) */
+  margin-bottom: 60px !important;
 
   background-image: url('/assets/image-004.jpg');
   background-size: cover;
@@ -23,11 +24,9 @@
 
 @media screen and (max-width: 768px) {
   .banner {
-    height: auto !important;
     min-height: 220px !important;
     max-height: 240px !important;
-
-    margin-bottom: 40px !important; /* ⬅ reduzido (antes 50px) */
+    margin-bottom: 40px !important;
 
     background-image: url('/assets/image-004-mobile.jpg');
   }
@@ -41,17 +40,13 @@
   min-height: auto !important;
 }
 
-/* =========================
-   CORREÇÃO DA HOME
-   ========================= */
-
-main > div {
-  min-height: auto !important;
+.py-20 {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
 
-.py-20 {
+main > div {
+  min-height: auto !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
@@ -64,14 +59,12 @@ header + main {
    RESPIRO ENTRE BANNER E TÍTULO
    ========================= */
 
-/* Espaço antes do título "Nossa Expertise" */
 h2 {
-  margin-top: 100px !important; /* ⬅ reduzido (antes 120px) */
+  margin-top: 100px !important;
 }
 
-/* Ajuste para mobile */
 @media screen and (max-width: 768px) {
   h2 {
-    margin-top: 80px !important; /* ⬅ reduzido (antes 100px) */
+    margin-top: 80px !important;
   }
 }
