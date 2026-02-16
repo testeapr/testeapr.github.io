@@ -6,8 +6,8 @@
 .banner {
   width: 100%;
   height: 28vh !important;
-  min-height: 260px !important;
-  max-height: 340px !important;
+  min-height: 270px !important;
+  max-height: 350px !important;
 
   background-image: url('/assets/image-004.jpg');
   background-size: cover;
@@ -55,13 +55,13 @@ main > div {
 
 /* Caso o banner seja um section logo no início */
 main section:first-of-type {
-  min-height: 260px !important;
-  max-height: 300px !important;
+  min-height: 270px !important;
+  max-height: 350px !important;
 }
 
 /* Garante que imagens de fundo não estiquem */
 main section:first-of-type > div {
-  min-height: 260px !important;
+  min-height: 270px !important;
 }
 /* =========================
    REMOVE FAIXA BRANCA ACIMA DO BANNER
@@ -124,13 +124,13 @@ main section:first-of-type {
 
 /* Espaço antes do título "Nossa Expertise" */
 h2 {
-  margin-top: 100px !important;
+  margin-top: 80px !important;
 }
 
 /* Ajuste para mobile */
 @media screen and (max-width: 768px) {
   h2 {
-    margin-top: 80px !important;
+    margin-top: 60px !important;
   }
 }
 
