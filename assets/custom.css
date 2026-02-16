@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 768px) {
   .banner {
-    height: 2280px !important;
+    height: auto   !important;
     min-height: 220px !important;
     max-height: 240px !important;
 
