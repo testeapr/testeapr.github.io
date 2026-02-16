@@ -1,17 +1,12 @@
 /* ==================================================
-   BANNER – ALTURA CONTROLADA (VERSÃO FINAL)
+   BANNER – CONTROLE SIMPLES, FIXO E ESTÁVEL
    ================================================== */
 
 /* ---------- BANNER (DESKTOP) ---------- */
 .banner {
   width: 100%;
-
-  /* CONTROLE REAL DE ALTURA */
-  min-height: 260px !important;
-  max-height: 280px !important;
-
-  margin-top: 0 !important;
-  margin-bottom: 80px !important;
+  height: 260px;                 /* ALTURA FIXA E CONTROLADA */
+  margin: 0;
 
   background-image: url('/assets/image-004.jpg');
   background-size: cover;
@@ -20,43 +15,25 @@
 }
 
 /* ---------- BANNER (MOBILE) ---------- */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .banner {
-    min-height: 220px !important;
-    max-height: 240px !important;
-    margin-bottom: 50px !important;
-
+    height: 220px;
     background-image: url('/assets/image-004-mobile.jpg');
   }
 }
 
-/* ---------- NEUTRALIZA FORÇOS DO TAILWIND ---------- */
-.min-h-screen {
-  min-height: auto !important;
+/* ==================================================
+   ESPAÇO ENTRE BANNER E CONTEÚDO
+   ================================================== */
+
+/* Primeiro bloco logo após o banner */
+.banner + * {
+  margin-top: 110px;
 }
 
-.py-20 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-main > div {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  min-height: auto !important;
-}
-
-header + main {
-  margin-top: 0 !important;
-}
-
-/* ---------- ESPAÇO ENTRE IMAGEM E TÍTULO ---------- */
-h2 {
-  margin-top: 120px !important;
-}
-
-@media screen and (max-width: 768px) {
-  h2 {
-    margin-top: 80px !important;
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+  .banner + * {
+    margin-top: 80px;
   }
 }
