@@ -1,119 +1,136 @@
-.banner {
-  height: 320px;
-  min-height: 270px;
-  max-height: 350px;
-  position: relative;
-  overflow: hidden;
-}
 
-.banner > div:first-child {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-
-@media (max-width: 768px) {
-  .banner {
-    height: 240px;
-    min-height: 220px;
-    max-height: 240px;
-  }
-}
-/* =========================
-   CORREÇÃO DEFINITIVA DO HERO (REACT)
-   ========================= */
-
-/* Section do banner gerada pelo React */
-section.h-screen {
-  height: 320px !important;
-  min-height: 270px !important;
-  max-height: 350px !important;
-}
-
-/* Evita que o container interno force altura */
-section.h-screen > div {
-  height: 100% !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  section.h-screen {
-    height: 240px !important;
-    min-height: 220px !important;
-    max-height: 240px !important;
-  }
-}
 /* =========================
    AJUSTE DEFINITIVO DO BANNER
-   (DESKTOP + MOBILE)
    ========================= */
 
-/* ---------- DESKTOP ---------- */
-@media (min-width: 769px) {
-  /* Banner (section com h-screen do Tailwind) */
-  section.h-screen {
-    height: 32vh !important;
-    min-height: 300px !important;
-    max-height: 350px !important;
-  }
+.banner {
+  width: 100%;
+  height: 28vh !important;
+  min-height: 260px !important;
+  max-height: 340px !important;
 
-  /* Conteúdo interno do banner (texto) */
-  section.h-screen .container {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
-  }
+  background-image: url('/assets/image-004.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-  section.h-screen {
+/* =========================
+   AJUSTE PARA MOBILE
+   ========================= */
+
+@media screen and (max-width: 768px) {
+  .banner {
     height: auto !important;
     min-height: 220px !important;
     max-height: 240px !important;
-    align-items: center !important;
-  }
 
-  section.h-screen .container {
-    padding-top: 20px !important;
-    padding-bottom: 24px !important;
+    background-image: url('/assets/image-004-mobile.jpg');
+  }
+}
+
+/* =========================
+   OVERRIDE DO TAILWIND
+   (evita banner em tela cheia)
+   ========================= */
+
+.min-h-screen {
+  min-height: auto !important;
+}
+/* =========================
+   CORREÇÃO DEFINITIVA DA HOME
+   ========================= */
+
+/* Força containers do Tailwind a não ocuparem a tela inteira */
+.min-h-screen {
+  min-height: auto !important;
+}
+
+/* Reduz qualquer seção inicial da home */
+main > div {
+  min-height: auto !important;
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
+}
+
+/* Caso o banner seja um section logo no início */
+main section:first-of-type {
+  min-height: 260px !important;
+  max-height: 300px !important;
+}
+
+/* Garante que imagens de fundo não estiquem */
+main section:first-of-type > div {
+  min-height: 260px !important;
+}
+/* =========================
+   REMOVE FAIXA BRANCA ACIMA DO BANNER
+   ========================= */
+
+/* Remove padding do container principal da home */
+main > div {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Caso exista py-20 do Tailwind */
+.py-20 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Garante que o banner encoste no header */
+header + main {
+  margin-top: 0 !important;
+}
+
+/* Ajuste fino do banner */
+.banner {
+  margin-top: 0 !important;
+}
+/* =========================
+   RESPIRO ENTRE BANNER E CONTEÚDO
+   ========================= */
+
+/* Espaço abaixo do banner */
+.banner {
+  margin-bottom: 80px !important;
+}
+
+/* Ajuste para mobile */
+@media screen and (max-width: 768px) {
+  .banner {
+    margin-bottom: 50px !important;
   }
 }
 /* =========================
-   CORREÇÃO DEFINITIVA DO BANNER (TAILWIND)
+   MAIS RESPIRO ENTRE BANNER E TÍTULO
    ========================= */
 
-/* Remove o comportamento de tela cheia APENAS do banner */
-section.h-screen {
-  height: auto !important;
-  min-height: 0 !important;
+/* Primeira seção de conteúdo da home */
+main section:first-of-type {
+  padding-top: 120px !important;
 }
 
-/* ---------- DESKTOP ---------- */
-@media (min-width: 769px) {
-  section.h-screen {
-    height: 320px !important;
-    max-height: 350px !important;
-    min-height: 270px !important;
+/* Ajuste para mobile */
+@media screen and (max-width: 768px) {
+  main section:first-of-type {
+    padding-top: 80px !important;
   }
+}
+/* =========================
+   RESPIRO REAL ENTRE BANNER E TÍTULO
+   ========================= */
 
-  section.h-screen .container {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+/* Espaço antes do título "Nossa Expertise" */
+h2 {
+  margin-top: 120px !important;
+}
+
+/* Ajuste para mobile */
+@media screen and (max-width: 768px) {
+  h2 {
+    margin-top: 100px !important;
   }
 }
 
-/* ---------- MOBILE ---------- */
-@media (max-width: 768px) {
-  section.h-screen {
-    height: auto !important;
-    min-height: 220px !important;
-    max-height: 240px !important;
-    align-items: center !important;
-  }
-
-  section.h-screen .container {
-    padding-top: 20px !important;
-    padding-bottom: 24px !important;
-  }
-}
