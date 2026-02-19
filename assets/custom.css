@@ -1,47 +1,47 @@
 /* =========================
-   BANNER — CONTROLE DEFINITIVO
+   BANNER (FUNCIONANDO – NÃO MEXER)
    ========================= */
 
-section.relative {
-  height: 320px !important;
+.banner {
+  width: 100%;
+  height: 28vh !important;
   min-height: 270px !important;
   max-height: 350px !important;
 
-  position: relative !important;
-  overflow: hidden !important;
+  background-image: url('/assets/image-004.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* Camada da imagem de fundo */
-section.relative > div:first-child {
-  position: absolute !important;
-  inset: 0 !important;
-
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-}
-
-/* Espaço correto entre banner e conteúdo */
-section.relative {
-  margin-bottom: 40px !important;
+  margin-bottom: 60px; /* único respiro necessário */
 }
 
 /* =========================
-   MOBILE
+   MOBILE – BANNER
    ========================= */
-@media (max-width: 768px) {
-  section.relative {
-    height: 230px !important;
+
+@media screen and (max-width: 768px) {
+  .banner {
+    height: auto !important;
     min-height: 220px !important;
     max-height: 240px !important;
 
-    margin-bottom: 30px !important;
-  }
-
-  section.relative > div:first-child {
-    background-position: center 35% !important;
+    background-image: url('/assets/image-004-mobile.jpg');
+    margin-bottom: 40px;
   }
 }
+
+/* =========================
+   CORREÇÕES PONTUAIS (SEM GLOBAL)
+   ========================= */
+
+/* Remove apenas o min-h-screen quando existir */
+.min-h-screen {
+  min-height: auto !important;
+}
+
+/* NÃO mexer mais em:
+   - main > div
+   - section:first-of-type
+   - h2 global
+*/
