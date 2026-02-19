@@ -1,21 +1,19 @@
 /* =========================
-   BANNER – AJUSTE DEFINITIVO
-   (ISOLADO, SEM QUEBRAR O SITE)
+   BANNER – AJUSTE FINAL ESTÁVEL
    ========================= */
 
 .banner {
   width: 100%;
-  height: 28vh;
-  min-height: 280px;
-  max-height: 360px;
+  height: 300px !important;   /* ALTURA DEFINITIVA */
+  max-height: 300px !important;
 
   background-image: url('/assets/image-004.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  margin-top: 0;
-  margin-bottom: 40px;
+  margin-top: 0 !important;
+  margin-bottom: 40px !important;
 }
 
 /* =========================
@@ -24,29 +22,24 @@
 
 @media screen and (max-width: 768px) {
   .banner {
-    height: auto;
-    min-height: 220px;
-    max-height: 240px;
+    height: 220px !important;
+    max-height: 220px !important;
 
     background-image: url('/assets/image-004-mobile.jpg');
-    background-position: center top;
-
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
   }
 }
 
 /* =========================
-   AJUSTE SOMENTE DO TÍTULO
-   ABAIXO DO BANNER (HOME)
+   ESPAÇO ENTRE BANNER E TÍTULO
    ========================= */
 
-/* Espaço entre banner e "Nossa Expertise" */
-.home h2 {
-  margin-top: 60px;
+h2 {
+  margin-top: 40px !important;
 }
 
 @media screen and (max-width: 768px) {
-  .home h2 {
-    margin-top: 40px;
+  h2 {
+    margin-top: 30px !important;
   }
 }
