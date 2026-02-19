@@ -1,15 +1,62 @@
+/* =========================================================
+   BANNER – CONTROLE REAL (PC + MOBILE)
+   ========================================================= */
 
-.banner {
-  width: 100%;
-  min-height: 350px;
-  background-image: url('/assets/image-004.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* PC */
+section.relative.h-screen {
+  height: 320px !important;
+  min-height: 270px !important;
+  max-height: 350px !important;
+
+  position: relative !important;
+  overflow: hidden !important;
+
+  display: flex !important;
+  align-items: center !important;
 }
 
-@media screen and (max-width: 768px) {
-  .banner {
-    background-image: url('/assets/image-004-mobile.jpg');
+/* Div interna que recebe a imagem */
+section.relative.h-screen > div:first-child {
+  position: absolute !important;
+  inset: 0 !important;
+
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+/* Neutraliza Tailwind */
+.h-screen,
+.min-h-screen {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  section.relative.h-screen {
+    height: 230px !important;
+    min-height: 220px !important;
+    max-height: 240px !important;
+  }
+
+  section.relative.h-screen > div:first-child {
+    background-position: center center !important;
+  }
+}
+
+/* =========================================================
+   RESPIRO COM O CONTEÚDO
+   ========================================================= */
+
+section.relative.h-screen {
+  margin-bottom: 40px !important;
+}
+
+@media (max-width: 768px) {
+  section.relative.h-screen {
+    margin-bottom: 30px !important;
   }
 }
