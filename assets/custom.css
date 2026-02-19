@@ -20,3 +20,27 @@
     max-height: 240px;
   }
 }
+/* =========================
+   CORREÇÃO DEFINITIVA DO HERO (REACT)
+   ========================= */
+
+/* Section do banner gerada pelo React */
+section.h-screen {
+  height: 320px !important;
+  min-height: 270px !important;
+  max-height: 350px !important;
+}
+
+/* Evita que o container interno force altura */
+section.h-screen > div {
+  height: 100% !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  section.h-screen {
+    height: 240px !important;
+    min-height: 220px !important;
+    max-height: 240px !important;
+  }
+}
