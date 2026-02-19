@@ -91,6 +91,31 @@
       });
 
       observerForm.observe(document.body, { childList: true, subtree: true });
-    </script>
-  </body>
+    <!-- CORREÇÃO DEFINITIVA DO TAMANHO DO BANNER -->
+<script>
+  function fixBannerHeight() {
+    const banner = document.querySelector("section.relative.h-screen");
+    if (!banner) return;
+
+    // Remove classes do Tailwind que forçam 100vh
+    banner.classList.remove("h-screen");
+    banner.classList.remove("min-h-screen");
+
+    const isMobile = window.innerWidth <= 768;
+
+    banner.style.height = isMobile ? "230px" : "320px";
+    banner.style.minHeight = isMobile ? "220px" : "270px";
+    banner.style.maxHeight = isMobile ? "240px" : "350px";
+    banner.style.overflow = "hidden";
+  }
+
+  // Executa após o React renderizar
+  window.addEventListener("load", fixBannerHeight);
+
+  // Garante que, se o React recriar o banner, ele seja corrigido de novo
+  const bannerObserver = new MutationObserver(fixBannerHeight);
+  bannerObserver.observe(document.body, { childList: true, subtree: true });
+  </script>
+ </body>
 </html>
+
