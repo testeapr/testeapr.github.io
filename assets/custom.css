@@ -1,10 +1,8 @@
-/* =====================================================
-   BANNER DEFINITIVO – APR TRANSPORTES
-   CONTROLA PC E MOBILE SEM QUEBRAR O SITE
-   ===================================================== */
+/* =========================
+   BANNER — CONTROLE DEFINITIVO
+   ========================= */
 
-/* Banner real renderizado pelo React */
-section.relative.h-screen {
+section.relative {
   height: 320px !important;
   min-height: 270px !important;
   max-height: 350px !important;
@@ -17,7 +15,7 @@ section.relative.h-screen {
 }
 
 /* Camada da imagem de fundo */
-section.relative.h-screen > div:first-child {
+section.relative > div:first-child {
   position: absolute !important;
   inset: 0 !important;
 
@@ -26,15 +24,8 @@ section.relative.h-screen > div:first-child {
   background-repeat: no-repeat !important;
 }
 
-/* REMOVE comportamento de tela cheia do Tailwind */
-.h-screen,
-.min-h-screen {
-  height: auto !important;
-  min-height: auto !important;
-}
-
 /* Espaço correto entre banner e conteúdo */
-section.relative.h-screen {
+section.relative {
   margin-bottom: 40px !important;
 }
 
@@ -42,7 +33,7 @@ section.relative.h-screen {
    MOBILE
    ========================= */
 @media (max-width: 768px) {
-  section.relative.h-screen {
+  section.relative {
     height: 230px !important;
     min-height: 220px !important;
     max-height: 240px !important;
@@ -50,32 +41,7 @@ section.relative.h-screen {
     margin-bottom: 30px !important;
   }
 
-  section.relative.h-screen > div:first-child {
+  section.relative > div:first-child {
     background-position: center 35% !important;
   }
-}<script>
-  function fixBannerHeight() {
-    const banner = document.querySelector("section.relative.h-screen");
-    if (!banner) return;
-
-    // REMOVE o comportamento de tela cheia
-    banner.classList.remove("h-screen");
-    banner.classList.remove("min-h-screen");
-
-    // FORÇA altura correta
-    const isMobile = window.innerWidth <= 768;
-
-    banner.style.height = isMobile ? "230px" : "320px";
-    banner.style.minHeight = isMobile ? "220px" : "270px";
-    banner.style.maxHeight = isMobile ? "240px" : "350px";
-    banner.style.overflow = "hidden";
-  }
-
-  // Aplica após o React montar a página
-  window.addEventListener("load", fixBannerHeight);
-
-  // Observa mudanças do React
-  const observer = new MutationObserver(fixBannerHeight);
-  observer.observe(document.body, { childList: true, subtree: true });
-</script>
-
+}
