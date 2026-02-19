@@ -60,3 +60,60 @@ section.relative.h-screen {
     margin-bottom: 30px !important;
   }
 }
+/* =====================================================
+   CORREÇÃO FINAL DO BANNER (REAL – SEM TENTATIVA)
+   ===================================================== */
+
+/* Banner real do React */
+section.relative.h-screen {
+  height: 320px !important;
+  min-height: 270px !important;
+  max-height: 350px !important;
+
+  position: relative !important;
+  overflow: hidden !important;
+
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Camada da imagem */
+section.relative.h-screen > div:first-child {
+  position: absolute !important;
+  inset: 0 !important;
+
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+/* REMOVE controle de tela cheia do Tailwind */
+.h-screen,
+.min-h-screen {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  section.relative.h-screen {
+    height: 230px !important;
+    min-height: 220px !important;
+    max-height: 240px !important;
+  }
+
+  section.relative.h-screen > div:first-child {
+    background-position: center 35% !important;
+  }
+}
+
+/* Respiro abaixo do banner */
+section.relative.h-screen {
+  margin-bottom: 40px !important;
+}
+
+@media (max-width: 768px) {
+  section.relative.h-screen {
+    margin-bottom: 30px !important;
+  }
+}
+
