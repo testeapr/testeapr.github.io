@@ -1,55 +1,45 @@
 /* =========================
-   BANNER – VERSÃO FUNCIONAL
+   CORREÇÃO DEFINITIVA DO BANNER
+   (respeita arte 270px–350px)
    ========================= */
 
-.banner {
-  width: 100%;
+/* Neutraliza o h-screen SOMENTE no banner */
+main > div > section.h-screen {
+  height: auto !important;
+  min-height: unset !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  align-items: stretch !important;
+}
+
+/* Controla a área real da imagem do banner */
+main > div > section.h-screen > div[style*="background-image"] {
   height: 28vh !important;
   min-height: 270px !important;
   max-height: 350px !important;
 
-  background-image: url('/assets/image-004.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Margens controladas */
-  margin-top: 0 !important;
-  margin-bottom: 40px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
-/* =========================
-   AJUSTE PARA MOBILE
-   ========================= */
-
-@media screen and (max-width: 768px) {
-  .banner {
+/* MOBILE */
+@media (max-width: 768px) {
+  main > div > section.h-screen > div[style*="background-image"] {
     height: auto !important;
     min-height: 220px !important;
     max-height: 240px !important;
-
-    background-image: url('/assets/image-004-mobile.jpg');
-    background-position: center top;
-
-    margin-bottom: 30px !important;
   }
 }
 
-/* =========================
-   ESPAÇO ENTRE BANNER E TÍTULO
-   (SEM AFETAR OUTRAS PÁGINAS)
-   ========================= */
-
-/* Ajuste leve apenas no primeiro h2 após o banner */
-.banner + h2,
-.banner + section h2 {
-  margin-top: 40px !important;
+/* Remove herança de tela cheia */
+.h-screen,
+.min-h-screen {
+  height: unset !important;
+  min-height: unset !important;
 }
 
-/* Mobile */
-@media screen and (max-width: 768px) {
-  .banner + h2,
-  .banner + section h2 {
-    margin-top: 30px !important;
-  }
+/* Espaço correto entre banner e conteúdo */
+main > div > section.h-screen {
+  margin-bottom: 40px !important;
 }
