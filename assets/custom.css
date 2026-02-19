@@ -1,18 +1,21 @@
-
 /* =========================
-   AJUSTE DEFINITIVO DO BANNER
+   BANNER – AJUSTE DEFINITIVO
+   (ISOLADO, SEM QUEBRAR O SITE)
    ========================= */
 
 .banner {
   width: 100%;
-  height: 28vh !important;
-  min-height: 280px !important;
-  max-height: 360px !important;
+  height: 28vh;
+  min-height: 280px;
+  max-height: 360px;
 
   background-image: url('/assets/image-004.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  margin-top: 0;
+  margin-bottom: 40px;
 }
 
 /* =========================
@@ -21,116 +24,29 @@
 
 @media screen and (max-width: 768px) {
   .banner {
-    height: auto !important;
-    min-height: 220px !important;
-    max-height: 240px !important;
+    height: auto;
+    min-height: 220px;
+    max-height: 240px;
 
     background-image: url('/assets/image-004-mobile.jpg');
+    background-position: center top;
+
+    margin-bottom: 30px;
   }
 }
 
 /* =========================
-   OVERRIDE DO TAILWIND
-   (evita banner em tela cheia)
+   AJUSTE SOMENTE DO TÍTULO
+   ABAIXO DO BANNER (HOME)
    ========================= */
 
-.min-h-screen {
-  min-height: auto !important;
-}
-/* =========================
-   CORREÇÃO DEFINITIVA DA HOME
-   ========================= */
-
-/* Força containers do Tailwind a não ocuparem a tela inteira */
-.min-h-screen {
-  min-height: auto !important;
+/* Espaço entre banner e "Nossa Expertise" */
+.home h2 {
+  margin-top: 60px;
 }
 
-/* Reduz qualquer seção inicial da home */
-main > div {
-  min-height: auto !important;
-  padding-top: 60px !important;
-  padding-bottom: 60px !important;
-}
-
-/* Caso o banner seja um section logo no início */
-main section:first-of-type {
-  min-height: 270px !important;
-  max-height: 350px !important;
-}
-
-/* Garante que imagens de fundo não estiquem */
-main section:first-of-type > div {
-  min-height: 270px !important;
-}
-/* =========================
-   REMOVE FAIXA BRANCA ACIMA DO BANNER
-   ========================= */
-
-/* Remove padding do container principal da home */
-main > div {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* Caso exista py-20 do Tailwind */
-.py-20 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* Garante que o banner encoste no header */
-header + main {
-  margin-top: 20 !important;
-}
-
-/* Ajuste fino do banner */
-.banner {
-  margin-top: 0 !important;
-}
-/* =========================
-   RESPIRO ENTRE BANNER E CONTEÚDO
-   ========================= */
-
-/* Espaço abaixo do banner */
-.banner {
-  margin-bottom: 40px !important;
-}
-
-/* Ajuste para mobile */
 @media screen and (max-width: 768px) {
-  .banner {
-    margin-bottom: 30px !important;
+  .home h2 {
+    margin-top: 40px;
   }
 }
-/* =========================
-   MAIS RESPIRO ENTRE BANNER E TÍTULO
-   ========================= */
-
-/* Primeira seção de conteúdo da home */
-main section:first-of-type {
-  padding-top: 80px !important;
-}
-
-/* Ajuste para mobile */
-@media screen and (max-width: 768px) {
-  main section:first-of-type {
-    padding-top: 40px !important;
-  }
-}
-/* =========================
-   RESPIRO REAL ENTRE BANNER E TÍTULO
-   ========================= */
-
-/* Espaço antes do título "Nossa Expertise" */
-h2 {
-  margin-top: 60px !important;
-}
-
-/* Ajuste para mobile */
-@media screen and (max-width: 768px) {
-  h2 {
-    margin-top: 40px !important;
-  }
-}
-
