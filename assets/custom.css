@@ -1,10 +1,10 @@
 /* =========================
-   BANNER – AJUSTE FINAL ESTÁVEL
+   BANNER – CONTROLE REAL
    ========================= */
 
 .banner {
   width: 100%;
-  height: 300px !important;   /* ALTURA DEFINITIVA */
+  height: 300px !important;
   max-height: 300px !important;
 
   background-image: url('/assets/image-004.jpg');
@@ -12,34 +12,33 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  margin-top: 0 !important;
-  margin-bottom: 40px !important;
+  margin: 0 !important;
 }
 
 /* =========================
-   AJUSTE PARA MOBILE
+   MOBILE
    ========================= */
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .banner {
     height: 220px !important;
-    max-height: 220px !important;
-
+    max-height: 240px !important;
     background-image: url('/assets/image-004-mobile.jpg');
-    margin-bottom: 30px !important;
   }
 }
 
 /* =========================
-   ESPAÇO ENTRE BANNER E TÍTULO
+   ESPAÇO APÓS O BANNER
    ========================= */
 
-h2 {
+.banner + section,
+.banner + div {
   margin-top: 40px !important;
 }
 
-@media screen and (max-width: 768px) {
-  h2 {
+@media (max-width: 768px) {
+  .banner + section,
+  .banner + div {
     margin-top: 30px !important;
   }
 }
