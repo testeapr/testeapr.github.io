@@ -6,7 +6,6 @@
   overflow: hidden;
 }
 
-/* imagem */
 .banner > div:first-child {
   position: absolute;
   inset: 0;
@@ -14,7 +13,6 @@
   background-position: center;
 }
 
-/* mobile */
 @media (max-width: 768px) {
   .banner {
     height: 240px;
