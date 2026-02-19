@@ -1,42 +1,24 @@
-/* =========================
-   BANNER – ALTURA CONTROLADA
-   ========================= */
-
-/* Remove comportamento de tela cheia apenas no banner */
-main > div > section.h-screen {
-  height: auto !important;
-  min-height: unset !important;
-  display: block !important;
+.banner {
+  height: 320px;
+  min-height: 270px;
+  max-height: 350px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Área real do banner (imagem) */
-main > div > section.h-screen > div[style*="background-image"] {
-  height: 320px !important;
-  min-height: 270px !important;
-  max-height: 350px !important;
-
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+/* imagem */
+.banner > div:first-child {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
 }
 
-/* MOBILE */
+/* mobile */
 @media (max-width: 768px) {
-  main > div > section.h-screen > div[style*="background-image"] {
-    height: 240px !important;
-    min-height: 220px !important;
-    max-height: 240px !important;
+  .banner {
+    height: 240px;
+    min-height: 220px;
+    max-height: 240px;
   }
-}
-
-/* Garante que o conteúdo venha DEPOIS do banner */
-main > div > section.h-screen + section {
-  margin-top: 60px !important;
-}
-
-/* Segurança: remove herança de tela cheia */
-.h-screen,
-.min-h-screen {
-  height: unset !important;
-  min-height: unset !important;
 }
