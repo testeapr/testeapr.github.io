@@ -33,89 +33,87 @@
     <link rel="stylesheet" href="/assets/custom.css">
     <script type="module" crossorigin src="/assets/index-De8GpY7Q.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DeKwEobi.css">
+
+    <!-- ALTURA DO BANNER DE CAMPANHA (topo do site)
+         Para deixar mais alto ou mais baixo, mude só os números abaixo:
+         clamp(MÍNIMO, PROPORÇÃO DA LARGURA DA TELA, MÁXIMO) -->
+    <style>
+      section.relative.h-screen {
+        height: clamp(280px, 30vw, 420px) !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: hidden;
+      }
+      @media (max-width: 768px) {
+        section.relative.h-screen {
+          height: 230px !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
 
     <!-- Tag canônica dinâmica -->
     <script>
-      const baseUrl = 'https://www.aprtransportes.com.br';
-      const canonicalUrl = baseUrl + window.location.pathname;
+      (function() {
+        const baseUrl = 'https://www.aprtransportes.com.br';
+        const canonicalUrl = baseUrl + window.location.pathname;
 
-      let link = document.querySelector("link[rel='canonical']");
-      if (!link) {
-        link = document.createElement('link');
-        link.rel = 'canonical';
-        document.head.appendChild(link);
-      }
-      link.href = canonicalUrl;
+        let link = document.querySelector("link[rel='canonical']");
+        if (!link) {
+          link = document.createElement('link');
+          link.rel = 'canonical';
+          document.head.appendChild(link);
+        }
+        link.href = canonicalUrl;
+      })();
     </script>
 
     <!-- Script que aplica imagem do banner após renderização do React -->
     <script>
-      const isMobile = window.innerWidth <= 768;
-      const targetImage = isMobile
-        ? "url('/assets/image-004-mobile.jpg')"
-        : "url('/assets/image-004.jpg')";
+      (function() {
+        const isMobile = window.innerWidth <= 768;
+        const targetImage = isMobile
+          ? "url('/assets/image-004-mobile.jpg')"
+          : "url('/assets/image-004.jpg')";
 
-      const applyBackgroundFix = () => {
-        const bannerElement = document.querySelector('[style*="image-004.jpg"]');
-        if (bannerElement) {
-          bannerElement.style.backgroundImage = targetImage;
-          observer.disconnect();
-        }
-      };
+        const applyBackgroundFix = () => {
+          const bannerElement = document.querySelector('[style*="image-004.jpg"]');
+          if (bannerElement) {
+            bannerElement.style.backgroundImage = targetImage;
+            observer.disconnect();
+          }
+        };
 
-      const observer = new MutationObserver(() => {
-        applyBackgroundFix();
-      });
+        const observer = new MutationObserver(() => {
+          applyBackgroundFix();
+        });
 
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
 
-      window.addEventListener('load', () => {
-        applyBackgroundFix();
-      });
+        window.addEventListener('load', () => {
+          applyBackgroundFix();
+        });
+      })();
     </script>
 
     <!-- Script para redirecionar após envio do formulário -->
     <script>
-      const observerForm = new MutationObserver(() => {
-        const msg = [...document.querySelectorAll("div, p, span")]
-          .find(el => el.textContent.includes("Obrigado"));
-        if (msg) {
-          window.location.href = "/obrigado.html";
-        }
-      });
+      (function() {
+        const observerForm = new MutationObserver(() => {
+          const msg = [...document.querySelectorAll("div, p, span")]
+            .find(el => el.textContent.includes("Obrigado"));
+          if (msg) {
+            window.location.href = "/obrigado.html";
+          }
+        });
 
-      observerForm.observe(document.body, { childList: true, subtree: true });
-    <!-- CORREÇÃO DEFINITIVA DO TAMANHO DO BANNER -->
-<script>
-  function fixBannerHeight() {
-    const banner = document.querySelector("section.relative.h-screen");
-    if (!banner) return;
-
-    // Remove classes do Tailwind que forçam 100vh
-    banner.classList.remove("h-screen");
-    banner.classList.remove("min-h-screen");
-
-    const isMobile = window.innerWidth <= 768;
-
-    banner.style.height = isMobile ? "230px" : "320px";
-    banner.style.minHeight = isMobile ? "220px" : "270px";
-    banner.style.maxHeight = isMobile ? "240px" : "350px";
-    banner.style.overflow = "hidden";
-  }
-
-  // Executa após o React renderizar
-  window.addEventListener("load", fixBannerHeight);
-
-  // Garante que, se o React recriar o banner, ele seja corrigido de novo
-  const bannerObserver = new MutationObserver(fixBannerHeight);
-  bannerObserver.observe(document.body, { childList: true, subtree: true });
-  </script>
- </body>
+        observerForm.observe(document.body, { childList: true, subtree: true });
+      })();
+    </script>
+  </body>
 </html>
-
